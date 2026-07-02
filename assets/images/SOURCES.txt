@@ -1,0 +1,5 @@
+This presentation currently uses local CSS and inline SVG visuals only.
+
+No external image assets are required for offline classroom playback.
+Future high-resolution commercial-use images can be added to this folder and
+credited here with source URL, license, author, and date accessed.

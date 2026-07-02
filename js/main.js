@@ -2,13 +2,34 @@ const slides = Array.from(document.querySelectorAll("[data-slide]"));
 const currentPage = document.getElementById("currentPage");
 const totalPages = document.getElementById("totalPages");
 const progressBar = document.getElementById("progressBar");
+const notesPanel = document.getElementById("notesPanel");
+const noteToggle = document.getElementById("noteToggle");
 
 let activeIndex = 0;
 let lastWheelTime = 0;
-const wheelDelay = 760;
+const wheelDelay = 720;
 
 function formatPageNumber(number) {
   return String(number).padStart(2, "0");
+}
+
+function getStepCount(slide) {
+  return Number(slide.dataset.steps || 0);
+}
+
+function getCurrentStep(slide) {
+  return Number(slide.dataset.currentStep || 0);
+}
+
+function setCurrentStep(slide, step) {
+  const safeStep = Math.max(0, Math.min(step, getStepCount(slide)));
+  slide.dataset.currentStep = String(safeStep);
+  slide.classList.toggle("step-1", safeStep >= 1);
+}
+
+function updateNotes() {
+  const note = slides[activeIndex].querySelector(".speaker-notes");
+  notesPanel.textContent = note ? note.textContent.trim() : "";
 }
 
 function updateDeck() {
@@ -19,6 +40,7 @@ function updateDeck() {
   currentPage.textContent = formatPageNumber(activeIndex + 1);
   totalPages.textContent = formatPageNumber(slides.length);
   progressBar.style.width = `${((activeIndex + 1) / slides.length) * 100}%`;
+  updateNotes();
 }
 
 function goToSlide(index) {
@@ -29,30 +51,69 @@ function goToSlide(index) {
   }
 
   activeIndex = nextIndex;
+  setCurrentStep(slides[activeIndex], 0);
   updateDeck();
 }
 
-function nextSlide() {
+function advance() {
+  const activeSlide = slides[activeIndex];
+  const step = getCurrentStep(activeSlide);
+  const stepCount = getStepCount(activeSlide);
+
+  if (step < stepCount) {
+    setCurrentStep(activeSlide, step + 1);
+    return;
+  }
+
   goToSlide(activeIndex + 1);
 }
 
-function previousSlide() {
+function previous() {
+  const activeSlide = slides[activeIndex];
+  const step = getCurrentStep(activeSlide);
+
+  if (step > 0) {
+    setCurrentStep(activeSlide, step - 1);
+    return;
+  }
+
   goToSlide(activeIndex - 1);
 }
 
+function toggleNotes() {
+  const isOpen = document.body.classList.toggle("notes-open");
+  noteToggle.setAttribute("aria-pressed", String(isOpen));
+}
+
 document.addEventListener("keydown", (event) => {
-  const nextKeys = ["ArrowRight", " ", "Spacebar"];
-  const previousKeys = ["ArrowLeft"];
+  const isTyping = ["INPUT", "TEXTAREA"].includes(event.target.tagName);
 
-  if (nextKeys.includes(event.key)) {
-    event.preventDefault();
-    nextSlide();
+  if (isTyping) {
+    return;
   }
 
-  if (previousKeys.includes(event.key)) {
+  if (event.key === "ArrowRight" || event.key === " " || event.key === "Spacebar") {
     event.preventDefault();
-    previousSlide();
+    advance();
   }
+
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    previous();
+  }
+
+  if (event.key.toLowerCase() === "n") {
+    event.preventDefault();
+    toggleNotes();
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest("button")) {
+    return;
+  }
+
+  advance();
 });
 
 document.addEventListener(
@@ -67,12 +128,15 @@ document.addEventListener(
     lastWheelTime = now;
 
     if (event.deltaY > 0) {
-      nextSlide();
+      goToSlide(activeIndex + 1);
     } else if (event.deltaY < 0) {
-      previousSlide();
+      goToSlide(activeIndex - 1);
     }
   },
   { passive: true }
 );
 
+noteToggle.addEventListener("click", toggleNotes);
+
+slides.forEach((slide) => setCurrentStep(slide, 0));
 updateDeck();
