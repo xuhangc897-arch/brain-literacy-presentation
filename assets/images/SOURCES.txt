@@ -1,5 +1,11 @@
-This presentation currently uses local CSS and inline SVG visuals only.
+This presentation uses local image files for offline classroom playback.
 
-No external image assets are required for offline classroom playback.
-Future high-resolution commercial-use images can be added to this folder and
-credited here with source URL, license, author, and date accessed.
+Current files:
+- learning-essence.png
+- growth-mindset.png
+- neuron-structure.png
+- memory-formation.png
+- childhood-impact.png
+
+If these assets come from external sources, record source URL, license, author,
+and date accessed here before public redistribution.

@@ -123,6 +123,15 @@ body::before {
   grid-template-columns: 1fr;
 }
 
+.image-layout {
+  grid-template-columns: minmax(0, 1fr) minmax(450px, 42%);
+  align-items: center;
+}
+
+.image-left-layout {
+  grid-template-columns: minmax(450px, 42%) minmax(0, 1fr);
+}
+
 .cover .title-block,
 .finale .title-block {
   place-self: center start;
@@ -172,6 +181,14 @@ h3 {
   margin-top: 24px;
   color: var(--muted);
   font-size: clamp(24px, 2.2vw, 34px);
+}
+
+.image-lead {
+  max-width: 680px;
+  margin-top: 24px;
+  color: #dceeff;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.45;
 }
 
 .question-list,
@@ -254,6 +271,47 @@ h3 {
   margin-top: 22px;
   color: var(--cyan);
   font-size: 18px;
+}
+
+.image-frame {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  align-self: center;
+  margin: 0;
+}
+
+.image-right {
+  justify-self: end;
+}
+
+.image-left {
+  justify-self: start;
+}
+
+.slide-image {
+  display: block;
+  width: clamp(450px, 36vw, 550px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 24px 58px rgba(0, 19, 52, 0.34), 0 0 34px rgba(98, 216, 255, 0.18);
+}
+
+.image-frame figcaption {
+  max-width: 520px;
+  color: rgba(246, 251, 255, 0.72);
+  font-size: 16px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+.neuron-image-frame {
+  justify-self: center;
+  transform: translateX(18px);
 }
 
 .timer {
@@ -724,6 +782,7 @@ body.notes-open .notes-panel {
 .slide h1,
 .slide h2,
 .subtitle,
+.image-lead,
 .takeaway,
 .visual-float {
   opacity: 0;
@@ -734,6 +793,7 @@ body.notes-open .notes-panel {
 .slide.is-active h1,
 .slide.is-active h2,
 .slide.is-active .subtitle,
+.slide.is-active .image-lead,
 .slide.is-active .takeaway {
   animation: bodyRise 620ms ease forwards;
 }
@@ -752,6 +812,13 @@ body.notes-open .notes-panel {
   animation: bodyRise 620ms ease 160ms forwards, floatShape 5.4s ease-in-out 900ms infinite;
 }
 
+.slide.is-active .media-zoom {
+  animation-name: imageFadeZoom;
+  animation-duration: 720ms;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 @keyframes bodyRise {
   to {
     opacity: 1;
@@ -766,6 +833,17 @@ body.notes-open .notes-panel {
   }
   50% {
     translate: 0 -12px;
+  }
+}
+
+@keyframes imageFadeZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -795,6 +873,23 @@ body.notes-open .notes-panel {
   .slide {
     padding: 52px 44px 58px;
     gap: 26px;
+  }
+
+  .image-layout,
+  .image-left-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .image-frame {
+    justify-self: center;
+  }
+
+  .slide-image {
+    width: min(100%, 480px);
+  }
+
+  .neuron-image-frame {
+    transform: none;
   }
 
   h1 {
