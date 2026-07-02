@@ -29,7 +29,7 @@ body {
   overflow: hidden;
   background: var(--bg);
   color: var(--ink);
-  font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
 body {
@@ -44,8 +44,9 @@ body::after {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-  background-size: 48px 48px;
+  background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black, transparent 78%);
+  opacity: 0.52;
   content: "";
 }
 
@@ -59,9 +60,9 @@ body::after {
 
 .neural-canvas-bg {
   background:
-    radial-gradient(circle at var(--mx) var(--my), rgba(110, 231, 255, 0.18), transparent 19%),
-    radial-gradient(circle at 18% 18%, rgba(141, 124, 255, 0.2), transparent 28%),
-    radial-gradient(circle at 82% 72%, rgba(47, 140, 255, 0.22), transparent 30%),
+    radial-gradient(circle at var(--mx) var(--my), rgba(110, 231, 255, 0.12), transparent 21%),
+    radial-gradient(circle at 18% 18%, rgba(141, 124, 255, 0.12), transparent 30%),
+    radial-gradient(circle at 82% 72%, rgba(47, 140, 255, 0.14), transparent 32%),
     linear-gradient(145deg, #020612 0%, #061228 44%, #081a3a 72%, #020612 100%);
 }
 
@@ -80,7 +81,7 @@ body::after {
     linear-gradient(115deg, transparent 0 47%, rgba(110, 231, 255, 0.11) 48%, transparent 51%),
     linear-gradient(28deg, transparent 0 54%, rgba(141, 124, 255, 0.09) 55%, transparent 58%);
   background-size: 128px 128px, 190px 190px, 240px 240px, 300px 300px;
-  opacity: 0.56;
+  opacity: 0.24;
   animation: neuralDrift 26s linear infinite;
 }
 
@@ -90,6 +91,7 @@ body::after {
     radial-gradient(circle at 70% 35%, rgba(141, 124, 255, 0.16), transparent 12%),
     radial-gradient(circle at 52% 78%, rgba(255, 255, 255, 0.09), transparent 15%);
   filter: blur(10px);
+  opacity: 0.7;
   animation: breathe 7s var(--ease) infinite;
 }
 
@@ -174,7 +176,6 @@ body::after {
 
 .content,
 .image-frame,
-.takeaway,
 .timer,
 .recall-prompt,
 .hippocampus-visual,
@@ -213,11 +214,11 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(72px, 8.2vw, 112px);
+  font-size: clamp(64px, 6.2vw, 84px);
 }
 
 h2 {
-  font-size: clamp(52px, 5.8vw, 82px);
+  font-size: clamp(44px, 4.8vw, 60px);
 }
 
 h3 {
@@ -247,7 +248,7 @@ h3 {
   max-width: 760px;
   margin-top: 26px;
   color: var(--muted);
-  font-size: clamp(24px, 2.2vw, 34px);
+  font-size: clamp(24px, 2vw, 32px);
   line-height: 1.42;
 }
 
@@ -265,8 +266,8 @@ h3 {
   padding: 0;
   list-style: none;
   color: var(--muted);
-  font-size: clamp(22px, 2vw, 30px);
-  line-height: 1.35;
+  font-size: clamp(20px, 1.55vw, 24px);
+  line-height: 1.48;
 }
 
 .compact-list li,
@@ -274,18 +275,6 @@ h3 {
 .summary-list li {
   padding: 0;
   border: 0;
-}
-
-.takeaway {
-  position: absolute;
-  left: 11%;
-  right: 11%;
-  bottom: 28px;
-  width: auto;
-  color: rgba(247, 251, 255, 0.62);
-  font-size: clamp(15px, 1.2vw, 19px);
-  line-height: 1.45;
-  text-align: center;
 }
 
 .speaker-notes {
@@ -334,18 +323,30 @@ h3 {
 }
 
 .image-layout {
-  grid-template-columns: minmax(0, 1fr) minmax(380px, 42%);
+  grid-template-columns: minmax(0, 0.94fr) minmax(440px, 1.06fr);
 }
 
 .image-left-layout {
-  grid-template-columns: minmax(380px, 43%) minmax(0, 1fr);
+  grid-template-columns: minmax(440px, 1.06fr) minmax(0, 0.94fr);
 }
 
 .image-frame {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   justify-items: center;
   align-self: center;
+  width: 100%;
+  padding: clamp(16px, 1.8vw, 26px);
+  border: 1px solid rgba(231, 244, 255, 0.14);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
+    rgba(4, 12, 28, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 28px 86px rgba(0, 0, 0, 0.36),
+    0 0 54px rgba(110, 231, 255, 0.11);
+  backdrop-filter: blur(22px);
 }
 
 .image-right {
@@ -358,22 +359,22 @@ h3 {
 
 .slide-image {
   display: block;
-  width: clamp(420px, 36vw, 560px);
+  width: clamp(480px, 44vw, 720px);
   max-width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.34), 0 0 44px rgba(110, 231, 255, 0.12);
+  border-radius: 18px;
+  filter: drop-shadow(0 24px 52px rgba(0, 0, 0, 0.34));
 }
 
 .compact-image {
-  width: clamp(360px, 31vw, 500px);
+  width: clamp(440px, 40vw, 660px);
 }
 
 .image-frame figcaption {
   max-width: 560px;
-  color: rgba(231, 244, 255, 0.58);
-  font-size: 15px;
+  color: rgba(231, 244, 255, 0.66);
+  font-size: clamp(14px, 1vw, 16px);
   line-height: 1.45;
   text-align: center;
 }
@@ -384,8 +385,8 @@ h3 {
 .neural-learning .slide-image,
 .music-brain .slide-image {
   box-shadow: none;
-  opacity: 0.92;
-  filter: drop-shadow(0 24px 54px rgba(0, 0, 0, 0.38)) drop-shadow(0 0 42px rgba(110, 231, 255, 0.16));
+  opacity: 1;
+  filter: drop-shadow(0 24px 54px rgba(0, 0, 0, 0.34));
 }
 
 .question-bubbles .question-list {
@@ -429,6 +430,64 @@ h3 {
 .lab-stage .content.wide {
   place-self: center;
   width: 100%;
+  text-align: center;
+}
+
+.challenge-intro {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+  max-width: 780px;
+  margin: 34px auto 0;
+}
+
+.challenge-intro p {
+  color: var(--muted);
+  font-size: clamp(22px, 1.9vw, 30px);
+  line-height: 1.5;
+}
+
+.start-challenge {
+  min-width: 220px;
+  min-height: 68px;
+  padding: 0 34px;
+  border: 1px solid rgba(110, 231, 255, 0.44);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.22), transparent 58%),
+    linear-gradient(135deg, rgba(110, 231, 255, 0.28), rgba(141, 124, 255, 0.18)),
+    rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  font: inherit;
+  font-size: clamp(20px, 1.55vw, 24px);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 18px 54px rgba(0, 0, 0, 0.28),
+    0 0 34px rgba(110, 231, 255, 0.22);
+  backdrop-filter: blur(18px);
+  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease);
+}
+
+.start-challenge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 22px 62px rgba(0, 0, 0, 0.32),
+    0 0 46px rgba(110, 231, 255, 0.32);
+}
+
+.challenge-play[hidden],
+.recall-prompt[hidden],
+.challenge-intro[hidden] {
+  display: none;
+}
+
+.challenge-play {
+  position: relative;
+  min-height: 460px;
+  margin-top: 20px;
 }
 
 .timer {
@@ -437,24 +496,26 @@ h3 {
   top: clamp(54px, 6vw, 86px);
   display: grid;
   place-items: center;
-  width: 116px;
+  width: 118px;
   aspect-ratio: 1;
   border-radius: 50%;
   background:
     radial-gradient(circle, rgba(110, 231, 255, 0.14), rgba(255, 255, 255, 0.03)),
     conic-gradient(from 20deg, var(--cyan), rgba(141, 124, 255, 0.62), transparent 72%);
   color: var(--ink);
-  font-size: 16px;
+  font-size: clamp(34px, 3.2vw, 48px);
   font-weight: 900;
   text-align: center;
-  box-shadow: 0 0 36px rgba(110, 231, 255, 0.24);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 42px rgba(110, 231, 255, 0.3);
 }
 
 .item-grid {
   position: relative;
   display: block;
-  min-height: 430px;
-  margin-top: 24px;
+  min-height: 440px;
+  margin-top: 16px;
 }
 
 .item-grid span {
@@ -467,7 +528,7 @@ h3 {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.09);
   color: rgba(247, 251, 255, 0.9);
-  font-size: clamp(18px, 1.5vw, 24px);
+  font-size: clamp(20px, 1.7vw, 28px);
   font-weight: 800;
   box-shadow: 0 0 28px rgba(110, 231, 255, 0.08);
   backdrop-filter: blur(16px);
@@ -492,7 +553,7 @@ h3 {
 .item-grid span:nth-child(16) { left: 84%; top: 76%; animation-delay: 3s; }
 
 .recall-prompt {
-  display: none;
+  display: block;
   max-width: 760px;
   margin: 58px auto 0;
   padding: 42px 48px;
@@ -528,33 +589,35 @@ h3 {
   display: none;
 }
 
+[data-step-show] {
+  display: none;
+}
+
 .slide.step-1 [data-step-show] {
   display: block;
   animation: revealUp 650ms var(--ease) forwards;
 }
 
-.memory-path .content {
-  grid-column: 1 / -1;
-}
-
 .memory-path .flow {
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
-  gap: 20px;
-  max-width: none;
-  margin-top: 52px;
+  gap: 14px;
+  max-width: 540px;
+  margin-top: 34px;
 }
 
 .memory-path .flow::before {
   position: absolute;
-  left: 4%;
-  right: 4%;
-  top: 50%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--cyan), var(--violet), transparent);
+  left: 50%;
+  top: 6%;
+  bottom: 6%;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--cyan), var(--violet), transparent);
   content: "";
   filter: drop-shadow(0 0 12px rgba(110, 231, 255, 0.8));
+  transform: translateX(-50%);
 }
 
 .node {
@@ -562,44 +625,46 @@ h3 {
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 150px;
-  min-height: 96px;
-  padding: 14px;
+  width: min(100%, 360px);
+  min-height: 68px;
+  padding: 12px 22px;
   border: 0;
-  border-radius: 999px;
+  border-radius: 22px;
   background: radial-gradient(circle, rgba(110, 231, 255, 0.2), rgba(255, 255, 255, 0.04));
   color: var(--ink);
   font-size: clamp(17px, 1.35vw, 22px);
   font-weight: 900;
   text-align: center;
+  justify-self: center;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 32px rgba(110, 231, 255, 0.16);
 }
 
 .process-slide .image-frame {
-  position: absolute;
-  right: 4%;
-  bottom: 12%;
-  width: 42%;
-  opacity: 0.34;
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: 100%;
+  opacity: 1;
 }
 
 .process-slide .image-frame figcaption {
-  display: none;
+  display: block;
 }
 
 .energy-systems .columns {
   grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-  margin-top: 56px;
+  gap: 24px;
+  margin-top: 38px;
+  max-width: 760px;
 }
 
 .system-card {
   display: grid;
   place-items: center;
-  min-height: 260px;
-  padding: 32px;
-  border: 0;
-  border-radius: 50%;
+  min-height: 210px;
+  padding: 28px;
+  border: 1px solid rgba(231, 244, 255, 0.1);
+  border-radius: 26px;
   background:
     radial-gradient(circle at 50% 42%, rgba(110, 231, 255, 0.2), rgba(255, 255, 255, 0.035) 62%, transparent 70%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
@@ -625,14 +690,14 @@ h3 {
 
 .classification-frame {
   position: absolute;
-  right: 7%;
-  bottom: 13%;
-  width: 34%;
-  opacity: 0.24;
+  right: 6%;
+  bottom: 9%;
+  width: 42%;
+  opacity: 1;
 }
 
 .classification-frame figcaption {
-  display: none;
+  display: block;
 }
 
 .corner-note {
@@ -722,17 +787,17 @@ h3 {
 .connection-stage .compact-list {
   gap: 22px;
   color: var(--ink);
-  font-size: clamp(36px, 3.5vw, 58px);
+  font-size: clamp(26px, 2.5vw, 38px);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.18;
 }
 
 .connection-stage .image-frame {
-  transform: scale(1.08);
+  transform: none;
 }
 
 .neuron-stage .slide-image {
-  width: clamp(520px, 45vw, 700px);
+  width: clamp(560px, 48vw, 760px);
 }
 
 .neuron-stage .compact-list {
@@ -762,11 +827,11 @@ h3 {
 .neuron-stage .compact-list li:nth-child(4) { right: 18%; bottom: 6%; }
 
 .story-map .london-map-frame {
-  transform: scale(1.08);
+  transform: none;
 }
 
 .story-map .slide-image {
-  width: clamp(500px, 43vw, 650px);
+  width: clamp(540px, 46vw, 740px);
 }
 
 .story-map .compact-list {
@@ -924,17 +989,17 @@ h3 {
 
 .mindset-stage h2 {
   max-width: 730px;
-  font-size: clamp(58px, 6.2vw, 92px);
+  font-size: clamp(48px, 5vw, 66px);
 }
 
 .mindset-stage .compact-list {
   margin-top: 28px;
   color: var(--soft);
-  font-size: clamp(17px, 1.3vw, 22px);
+  font-size: clamp(19px, 1.45vw, 23px);
 }
 
 .mindset-stage .image-frame {
-  opacity: 0.82;
+  opacity: 1;
 }
 
 .language-stage .teacher-grid,
@@ -995,13 +1060,13 @@ h3 {
 }
 
 .sequence-frame {
-  justify-items: start;
-  margin-top: 30px;
+  justify-items: center;
+  margin-top: 34px;
 }
 
 .sequence-frame .slide-image {
-  width: clamp(440px, 45vw, 620px);
-  opacity: 0.72;
+  width: clamp(560px, 58vw, 860px);
+  opacity: 1;
 }
 
 .soundwave-stage .soundwave-layer {
@@ -1037,12 +1102,6 @@ h3 {
     linear-gradient(90deg, rgba(110, 231, 255, 0.05) 1px, transparent 1px),
     rgba(255, 255, 255, 0.04);
   background-size: 28px 28px;
-}
-
-.ai-stage .takeaway {
-  color: rgba(247, 251, 255, 0.86);
-  font-size: clamp(22px, 1.8vw, 30px);
-  font-weight: 900;
 }
 
 .finale-stage .final-brain {
@@ -1163,7 +1222,6 @@ body.notes-open .notes-panel {
 .slide h2,
 .subtitle,
 .image-lead,
-.takeaway,
 .visual-float {
   opacity: 0;
   transform: translateY(28px) scale(0.98);
@@ -1173,18 +1231,13 @@ body.notes-open .notes-panel {
 .slide.is-active h1,
 .slide.is-active h2,
 .slide.is-active .subtitle,
-.slide.is-active .image-lead,
-.slide.is-active .takeaway {
+.slide.is-active .image-lead {
   animation: revealUp 820ms var(--ease) forwards;
 }
 
 .slide.is-active .subtitle,
 .slide.is-active .image-lead {
   animation-delay: 110ms;
-}
-
-.slide.is-active .takeaway {
-  animation-delay: 420ms;
 }
 
 .slide.is-active .reveal {
@@ -1307,6 +1360,11 @@ body.notes-open .notes-panel {
     grid-template-columns: 1fr;
   }
 
+  .image-layout .image-frame,
+  .image-left-layout .image-frame {
+    order: -1;
+  }
+
   h1 {
     font-size: clamp(42px, 11vw, 62px);
   }
@@ -1327,7 +1385,7 @@ body.notes-open .notes-panel {
   .neuron-stage .slide-image,
   .story-map .slide-image,
   .sequence-frame .slide-image {
-    width: min(100%, 430px);
+    width: min(100%, 560px);
   }
 
   .hero-stage .hero-brain,
@@ -1356,23 +1414,33 @@ body.notes-open .notes-panel {
   }
 
   .timer {
-    right: 24px;
-    top: 24px;
+    position: relative;
+    right: auto;
+    top: auto;
     width: 86px;
-    font-size: 13px;
+    margin: 0 auto 14px;
+    font-size: 30px;
   }
 
   .memory-path .flow {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .memory-path .flow::before,
-  .process-slide .image-frame,
-  .classification-frame,
   .hippocampus-visual,
   .soundwave-layer {
     display: none;
+  }
+
+  .process-slide .image-frame,
+  .classification-frame {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    display: grid;
+    width: 100%;
+    opacity: 1;
   }
 
   .node {
@@ -1412,12 +1480,6 @@ body.notes-open .notes-panel {
 
   .toolkit-stage .tips-grid {
     gap: 10px;
-  }
-
-  .takeaway {
-    bottom: 24px;
-    width: calc(100% - 44px);
-    font-size: 13px;
   }
 
   .page-indicator {
