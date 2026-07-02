@@ -6,6 +6,11 @@ Current files:
 - neuron-structure.png
 - memory-formation.png
 - childhood-impact.png
+- curve-ebbinghaus.png
+- london-map.png
+- memory-classification.png
+- music-brain.png
+- sequence-memory.png
 
 If these assets come from external sources, record source URL, license, author,
 and date accessed here before public redistribution.

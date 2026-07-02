@@ -293,12 +293,16 @@ h3 {
 
 .slide-image {
   display: block;
-  width: clamp(450px, 36vw, 550px);
+  width: clamp(420px, 36vw, 560px);
   max-width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 16px;
   box-shadow: 0 24px 58px rgba(0, 19, 52, 0.34), 0 0 34px rgba(98, 216, 255, 0.18);
+}
+
+.compact-image {
+  width: clamp(420px, 32vw, 520px);
 }
 
 .image-frame figcaption {
@@ -483,6 +487,40 @@ h3 {
   font-size: 20px;
 }
 
+.memory-systems-slide .columns {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  max-width: 800px;
+}
+
+.memory-systems-slide .system-card {
+  min-height: 190px;
+  padding: 20px;
+}
+
+.memory-systems-slide .system-card p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.memory-systems-slide .line-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 16px;
+}
+
+.classification-frame {
+  justify-items: start;
+  margin-top: 22px;
+  max-width: 860px;
+}
+
+.classification-frame figcaption,
+.sequence-frame figcaption {
+  max-width: 760px;
+  text-align: left;
+}
+
 .number-stream {
   display: flex;
   justify-content: center;
@@ -586,23 +624,18 @@ h3 {
   color: var(--light);
 }
 
-.map-visual {
-  min-height: 360px;
-  border: 1px solid var(--line);
-  background:
-    linear-gradient(30deg, transparent 45%, rgba(98, 216, 255, 0.42) 46%, transparent 48%),
-    linear-gradient(120deg, transparent 36%, rgba(246, 251, 255, 0.24) 37%, transparent 40%),
-    linear-gradient(70deg, transparent 52%, rgba(98, 216, 255, 0.24) 53%, transparent 56%),
-    rgba(246, 251, 255, 0.07);
-  color: rgba(246, 251, 255, 0.82);
-  display: grid;
-  place-items: center;
-  font-size: 38px;
-  font-weight: 800;
+.london-map-frame {
+  align-self: center;
 }
 
 .hippocampus-visual {
-  min-height: 260px;
+  position: absolute;
+  right: 78px;
+  bottom: 88px;
+  z-index: 1;
+  width: 260px;
+  min-height: 180px;
+  opacity: 0.62;
 }
 
 .hippocampus-visual::before {
@@ -629,6 +662,27 @@ h3 {
 
 .tips-grid {
   grid-template-columns: repeat(5, 1fr);
+}
+
+.sequence-slide .tips-grid {
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.sequence-slide .tip-card {
+  min-height: 86px;
+  padding: 14px;
+  font-size: 20px;
+}
+
+.sequence-frame {
+  justify-items: start;
+  margin-top: 22px;
+}
+
+.sequence-frame .slide-image {
+  width: clamp(420px, 44vw, 560px);
 }
 
 .compare-grid {
@@ -888,6 +942,10 @@ body.notes-open .notes-panel {
     width: min(100%, 480px);
   }
 
+  .compact-image {
+    width: min(100%, 460px);
+  }
+
   .neuron-image-frame {
     transform: none;
   }
@@ -910,6 +968,28 @@ body.notes-open .notes-panel {
   .circle-row,
   .tips-grid {
     gap: 12px;
+  }
+
+  .memory-systems-slide .columns,
+  .sequence-slide .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .classification-frame,
+  .sequence-frame {
+    justify-items: center;
+  }
+
+  .classification-frame figcaption,
+  .sequence-frame figcaption {
+    text-align: center;
+  }
+
+  .hippocampus-visual {
+    right: 32px;
+    bottom: 66px;
+    width: 170px;
+    opacity: 0.38;
   }
 
   .system-card,
