@@ -7,11 +7,13 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="neural-canvas-bg" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
   <main class="stage" aria-label="探秘记忆 HTML 演示">
     <div class="deck" id="deck">
-      <section class="slide cover is-active" data-slide>
+      <section class="slide cover hero-stage is-active" data-slide>
         <div class="tech-bg light"></div>
-        <div class="hero-brain visual-float" aria-hidden="true">
+        <div class="hero-brain" aria-hidden="true">
           <svg viewBox="0 0 420 320" role="img">
             <path d="M167 72c-44-16-93 14-95 63-37 12-54 58-28 90-15 44 26 82 70 65 20 36 78 36 101 1 34 18 80 1 91-37 43-4 68-55 39-91 16-42-20-86-65-79-25-37-80-43-113-12Z"/>
             <path d="M116 145c36-27 67-18 86 24 18-50 54-62 98-35M105 214c46-15 81 0 106 46 16-48 52-70 104-63M146 105c22 17 39 33 49 63M260 99c-28 25-44 58-46 100"/>
@@ -26,10 +28,10 @@
         <aside class="speaker-notes">开场先用一个问题引起学生兴趣：我们每天都在记东西，但很少思考记忆到底怎么形成。告诉学生，这节课不是背脑科学名词，而是用脑科学解释学习中的真实困惑：为什么会忘，怎样记得更牢，以及大脑为什么可以随着练习而改变。</aside>
       </section>
 
-      <section class="slide split forgetting-slide image-layout" data-slide>
+      <section class="slide split forgetting-slide image-layout question-bubbles" data-slide>
         <div class="content">
           <p class="kicker">Opening Questions</p>
-          <h2>为什么我们会遗忘？</h2>
+          <h2>昨天背过的内容，今天还剩多少？</h2>
           <p class="image-lead reveal">遗忘不是突然发生的，而是有规律的。</p>
           <ul class="question-list">
             <li class="reveal">为什么昨天背的单词今天就忘了？</li>
@@ -45,7 +47,7 @@
         <aside class="speaker-notes">这一页用三个问题把学生带入主题。可以请大家举手：谁有过“昨天会，今天忘”的经历？右侧遗忘曲线说明，遗忘不是突然发生的，也不是简单的懒惰，而是记忆系统本身有规律。由此引出今天的核心：如果理解遗忘规律，我们就能更科学地安排复习和学习。</aside>
       </section>
 
-      <section class="slide memory-challenge" data-slide data-steps="1">
+      <section class="slide memory-challenge lab-stage" data-slide data-steps="1">
         <div class="content wide">
           <p class="kicker">Class Activity</p>
           <h2>你能记住多少？</h2>
@@ -66,7 +68,7 @@
         <aside class="speaker-notes">操作时先让学生盯着16个物品看30秒，提醒他们不能写下来。时间到后点击下一步，物品消失，学生凭记忆写出名称。不要马上公布答案，先让学生比较自己和同桌的数量差异，再追问：差异来自天赋，还是来自分类、联想、注意等策略？自然引出工作记忆。</aside>
       </section>
 
-      <section class="slide process-slide image-layout" data-slide>
+      <section class="slide process-slide image-layout memory-path" data-slide>
         <div class="content">
           <p class="kicker">Memory Process</p>
           <h2>记忆是如何形成的？</h2>
@@ -86,7 +88,7 @@
         <aside class="speaker-notes">这一页用流程图和右侧图片解释记忆不是一下子进入大脑仓库，而是经历多个阶段。外界信息先短暂停留，只有被注意到的信息才进入工作记忆；经过理解、加工和复习，才可能进入长时记忆。讲图时可以让学生把“老师讲课、认真听、理解、记住、考试回忆”分别对应到流程中的不同环节。</aside>
       </section>
 
-      <section class="slide three-columns memory-systems-slide" data-slide>
+      <section class="slide three-columns memory-systems-slide energy-systems" data-slide>
         <div class="content wide">
           <p class="kicker">Three Systems</p>
           <h2>三种记忆系统</h2>
@@ -120,7 +122,7 @@
         <aside class="speaker-notes">强调三种系统各有作用。感觉记忆像入口，帮助我们过滤大量信息；工作记忆像临时操作台，负责理解和思考，但空间很小；长时记忆像长期资料库，是真正掌握知识的地方。下方分类图帮助学生把三种系统看成一个整体，而不是孤立概念。提醒学生，课堂上信息太密、一次学太多，工作记忆就容易超载。</aside>
       </section>
 
-      <section class="slide number-challenge" data-slide data-steps="1">
+      <section class="slide number-challenge test-interface" data-slide data-steps="1">
         <div class="content wide">
           <p class="kicker">Working Memory</p>
           <h2>你的工作记忆有多强？</h2>
@@ -137,7 +139,7 @@
         <aside class="speaker-notes">让数字依次出现时，要求学生只看不写。消失后请他们倒着说出来。多数学生会发现比正着背困难得多，因为倒背需要同时保存数字和进行操作。这里要安抚学生：不是笨，而是工作记忆的空间有限。接下来引出学习设计要降低不必要的认知负荷。</aside>
       </section>
 
-      <section class="slide methods" data-slide>
+      <section class="slide methods strategy-stage" data-slide>
         <div class="content wide">
           <p class="kicker">Better Memory</p>
           <h2>如何让记忆更牢？</h2>
@@ -163,7 +165,7 @@
         <aside class="speaker-notes">这一页从“为什么会忘”转向“怎样记得牢”。深加工强调理解而不是机械重复；间隔学习强调分散复习比临时抱佛脚更有效；提取练习强调主动回忆比反复看书更能巩固记忆。可以请学生把这三条和自己的学习习惯做对照。</aside>
       </section>
 
-      <section class="slide learning-essence image-layout" data-slide>
+      <section class="slide learning-essence image-layout connection-stage" data-slide>
         <div class="content">
           <p class="kicker">Learning Essence</p>
           <h2>什么是学习？</h2>
@@ -181,7 +183,7 @@
         <aside class="speaker-notes">这一页把前面的记忆方法提升到“学习本质”。可以告诉学生，学习并不是把知识像文件一样放进脑袋，而是把新信息和已有经验连接起来，并在练习中变得更稳定、更容易提取。右侧图片用来帮助学生形成整体印象：学习是一个主动建构过程，而不是被动接收过程。</aside>
       </section>
 
-      <section class="slide neural-learning image-layout" data-slide>
+      <section class="slide neural-learning image-layout neuron-stage" data-slide>
         <div class="content">
           <p class="kicker">Neural Connection</p>
           <h2>神经元之间，正在建立新的连接。</h2>
@@ -201,7 +203,7 @@
         <aside class="speaker-notes">用右侧神经元结构图解释学习的本质。学生不需要掌握复杂结构，只要理解大脑由许多神经元组成，学习会让相关神经元之间的连接变得更有效。可以指着树突、轴突和突触说明信息传递的大致方向。每次练习、回忆、纠错，都是在让这些连接更容易被激活。</aside>
       </section>
 
-      <section class="slide case-slide image-left-layout" data-slide>
+      <section class="slide case-slide image-left-layout story-map" data-slide>
         <figure class="image-frame image-left london-map-frame">
           <img class="slide-image reveal media-zoom" src="assets/images/london-map.png" alt="伦敦地图">
           <figcaption>复杂街道网络是空间记忆训练的真实情境。</figcaption>
@@ -220,7 +222,7 @@
         <aside class="speaker-notes">介绍伦敦出租车司机案例时，可以先让学生观察左侧地图：复杂道路需要大量空间记忆。再说明核心发现：长期记忆复杂街道与海马体变化有关。右侧保留的海马体视觉元素用于提示海马体和空间记忆、长期记忆密切相关。这个案例说明，大脑不是一成不变的器官，持续学习和练习会留下可观察的结构变化。</aside>
       </section>
 
-      <section class="slide plasticity" data-slide>
+      <section class="slide plasticity orbit-factors" data-slide>
         <div class="content">
           <p class="kicker">Plasticity</p>
           <h2>大脑每天都在改变。</h2>
@@ -237,7 +239,7 @@
         <aside class="speaker-notes">大脑可塑性指的是大脑会根据经验、环境和练习发生改变。这里要避免让学生误以为只要努力就立刻成功，而是说明持续、正确的练习会逐渐改变神经连接。遗传会影响起点，但教育、环境和练习会持续影响成长路径。</aside>
       </section>
 
-      <section class="slide childhood image-layout image-left-layout" data-slide>
+      <section class="slide childhood image-layout image-left-layout warm-stage" data-slide>
         <figure class="image-frame image-left">
           <img class="slide-image reveal media-zoom" src="assets/images/childhood-impact.png" alt="儿童时期大脑发展示意图">
           <figcaption>儿童时期的大脑对环境、互动和练习高度敏感。</figcaption>
@@ -255,7 +257,7 @@
         <aside class="speaker-notes">这一页补充儿童时期大脑发展的重要性。儿童的大脑并不是成人大脑的缩小版，而是在快速建立和修剪连接。环境中的语言、游戏、阅读、运动和情感支持，都会影响连接如何发展。右侧文字强调：早期教育不是提前灌输知识，而是提供丰富、稳定、积极的学习经验。</aside>
       </section>
 
-      <section class="slide compare" data-slide>
+      <section class="slide compare practice-stage" data-slide>
         <div class="content wide">
           <p class="kicker">Practice Changes Brain</p>
           <h2>案例：小提琴演奏家</h2>
@@ -275,7 +277,7 @@
         <aside class="speaker-notes">这一页用小提琴演奏家的例子说明专项训练会影响大脑。小提琴演奏对左手精细动作要求很高，长期练习会让相关脑区更活跃、更发达。可以借此强调：练习不是简单重复，而是持续让相关神经通路被激活和优化。</aside>
       </section>
 
-      <section class="slide mindset image-layout" data-slide>
+      <section class="slide mindset image-layout mindset-stage" data-slide>
         <div class="content">
           <p class="kicker">Mindset</p>
           <h2>成长型思维</h2>
@@ -293,7 +295,7 @@
         <aside class="speaker-notes">把前面的脑科学结论转化为学习态度。右侧图片用来强化“成长”不是抽象口号，而是一步一步调整策略、积累练习的过程。固定型思维容易把困难解释为天赋不足，成长型思维则把困难看作当前阶段的反馈。重点是让学生理解：大脑可以通过练习改变，所以“我现在还不会”比“我不会”更符合科学。</aside>
       </section>
 
-      <section class="slide teacher" data-slide>
+      <section class="slide teacher language-stage" data-slide>
         <div class="content wide">
           <p class="kicker">For Teachers</p>
           <h2>教师如何促进成长？</h2>
@@ -314,7 +316,7 @@
         <aside class="speaker-notes">这一页面向教师，也适合让学生理解评价语言的影响。夸“聪明”可能让学生害怕失败，因为失败会威胁聪明形象；肯定方法、努力和坚持，则会把注意力放到可改进的行为上。评价不是只表扬结果，而是帮助学生看见可以继续调整的策略。</aside>
       </section>
 
-      <section class="slide tips sequence-slide" data-slide>
+      <section class="slide tips sequence-slide toolkit-stage" data-slide>
         <div class="content wide">
           <p class="kicker">Learning Tips</p>
           <h2>五个学习建议</h2>
@@ -334,7 +336,8 @@
         <aside class="speaker-notes">把整节课落到具体行动。间隔学习帮助抵抗遗忘；自我测试让大脑练习提取；深加工让知识和已有经验建立联系；睡眠帮助巩固记忆；多通道学习让听、说、写、画共同参与。下方图片用来说明复习节奏：不要把所有复习挤在一次，而是把回忆练习分散到不同时间点。提醒学生选择一条从今天开始尝试。</aside>
       </section>
 
-      <section class="slide music-brain image-layout" data-slide>
+      <section class="slide music-brain image-layout soundwave-stage" data-slide>
+        <div class="soundwave-layer" aria-hidden="true"></div>
         <div class="content">
           <p class="kicker">Music & Brain</p>
           <h2>音乐如何影响大脑？</h2>
@@ -352,7 +355,7 @@
         <aside class="speaker-notes">这一页把记忆主题扩展到音乐与声音环境。可以说明音乐会同时调动注意、情绪和记忆，所以有时旋律和节奏能帮助我们记住信息，例如口诀、节拍和歌曲。但也要提醒学生，不是所有音乐都适合学习；歌词太强、节奏太刺激的声音可能分散注意。关键是找到能帮助自己保持专注的环境。</aside>
       </section>
 
-      <section class="slide ai-age" data-slide>
+      <section class="slide ai-age ai-stage" data-slide>
         <div class="content wide">
           <p class="kicker">AI Era</p>
           <h2>AI越来越聪明，我们为什么还要学习？</h2>
@@ -376,8 +379,8 @@
         <aside class="speaker-notes">把话题连接到学生熟悉的AI时代。AI很擅长存储、检索和生成答案，但人类学习的目标不只是记住信息，而是理解信息、提出问题、做出判断和创造新想法。真正重要的是把AI当作学习工具，而不是把思考交出去。</aside>
       </section>
 
-      <section class="slide finale" data-slide>
-        <div class="final-brain visual-float" aria-hidden="true"></div>
+      <section class="slide finale finale-stage" data-slide>
+        <div class="final-brain" aria-hidden="true"></div>
         <div class="content title-block">
           <p class="kicker">Summary</p>
           <h2>今天记住三句话。</h2>
@@ -406,6 +409,7 @@
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
+  <script src="js/background.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
