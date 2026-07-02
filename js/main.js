@@ -10,12 +10,19 @@ const memoryPlay = document.querySelector("[data-memory-play]");
 const memoryRecall = document.querySelector("[data-memory-recall]");
 const memoryTimer = document.querySelector("[data-memory-timer]");
 const memoryStart = document.querySelector("[data-start-memory]");
+const numberChallenge = document.querySelector(".number-challenge");
+const numberIntro = document.querySelector("[data-number-intro]");
+const numberPlay = document.querySelector("[data-number-play]");
+const numberRecall = document.querySelector("[data-number-recall]");
+const numberStart = document.querySelector("[data-start-number]");
 
 let activeIndex = 0;
 let lastWheelTime = 0;
 let memoryInterval = null;
+let numberTimeout = null;
 const wheelDelay = 720;
 const memoryDuration = 30;
+const numberRevealDuration = 6100;
 
 function formatPageNumber(number) {
   return String(number).padStart(2, "0");
@@ -92,6 +99,49 @@ function startMemoryChallenge() {
   }, 1000);
 }
 
+function stopNumberSequence() {
+  if (numberTimeout) {
+    clearTimeout(numberTimeout);
+    numberTimeout = null;
+  }
+}
+
+function resetNumberChallenge() {
+  if (!numberChallenge) {
+    return;
+  }
+
+  stopNumberSequence();
+  numberIntro.hidden = false;
+  numberPlay.hidden = true;
+  numberRecall.hidden = true;
+  numberChallenge.classList.remove("number-playing", "number-recall");
+}
+
+function showNumberRecall() {
+  stopNumberSequence();
+  numberIntro.hidden = true;
+  numberPlay.hidden = true;
+  numberRecall.hidden = false;
+  numberChallenge.classList.remove("number-playing");
+  numberChallenge.classList.add("number-recall");
+}
+
+function startNumberChallenge() {
+  stopNumberSequence();
+  numberIntro.hidden = true;
+  numberPlay.hidden = false;
+  numberRecall.hidden = true;
+  numberChallenge.classList.remove("number-recall");
+
+  numberChallenge.classList.remove("number-playing");
+  requestAnimationFrame(() => {
+    numberChallenge.classList.add("number-playing");
+  });
+
+  numberTimeout = setTimeout(showNumberRecall, numberRevealDuration);
+}
+
 function updateNotes() {
   const note = slides[activeIndex].querySelector(".speaker-notes");
   notesPanel.textContent = note ? note.textContent.trim() : "";
@@ -117,6 +167,10 @@ function goToSlide(index) {
 
   if (slides[activeIndex] === memoryChallenge || slides[nextIndex] === memoryChallenge) {
     resetMemoryChallenge();
+  }
+
+  if (slides[activeIndex] === numberChallenge || slides[nextIndex] === numberChallenge) {
+    resetNumberChallenge();
   }
 
   activeIndex = nextIndex;
@@ -207,7 +261,9 @@ document.addEventListener(
 
 noteToggle.addEventListener("click", toggleNotes);
 memoryStart?.addEventListener("click", startMemoryChallenge);
+numberStart?.addEventListener("click", startNumberChallenge);
 
 slides.forEach((slide) => setCurrentStep(slide, 0));
 resetMemoryChallenge();
+resetNumberChallenge();
 updateDeck();
